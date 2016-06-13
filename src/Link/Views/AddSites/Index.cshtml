@@ -1,0 +1,59 @@
+﻿@model Link.Models.AddSitesViewModels.FormSubmissionViewModel
+@{
+    ViewData["Title"] = "Sisesta lemmiklehed";
+    ViewData["ActivePage"] = "AddSites";
+}
+
+<div class="container">
+    <form asp-action="FormSubmission">
+        <h3>Sisesta enda isikuandmed ja andmed vähemalt 5 huvipakkuva lehekülje kohta.</h3>
+        <div class="row">
+            <div class="personal-info col-md-3">
+                <label>Isikuandmed</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="formFirstName" asp-for="User.FirstName" placeholder="Eesnimi">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="formLastName" asp-for="User.LastName"  placeholder="Perenimi">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="formBirthDate" asp-for="User.BirthDate" value="01/01/1990" />
+                </div>
+                <input type="submit" value="Sisesta" />
+                <div class="text-danger">
+                    @ViewData["errorString"]
+                </div>
+            </div>
+            <div class="url-info-container col-md-9 container ">
+                @for (int i = 0; i < 10; i++)
+                {
+                    <div class="url-info col-md-4">
+                        <label>@(i+1)</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formSiteTitle" asp-for="WebSiteInfos[i].Title" placeholder="Pealkiri">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formSiteUrl" asp-for="WebSiteInfos[i].Url" placeholder="Url (http://example.com)">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formSiteOwner" asp-for="WebSiteInfos[i].Owner" placeholder="Omanik">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formSiteCategory" asp-for="WebSiteInfos[i].Category" placeholder="Kategooria">
+                        </div>
+                        <label>Punktid</label>
+                        <select class="form-control" id="formSitePoints" asp-for="WebSiteInfos[i].Points">
+                            <option selected disabled hidden></option>
+                            @for (int j = 1; j < 11; j++)
+                            {
+                                <option>@j</option>
+                            }
+                        </select>
+                        <label>Kirjeldus</label>
+                        <textarea class="form-control" rows="2" id="formSiteDescription" asp-for="WebSiteInfos[i].Description"></textarea>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>

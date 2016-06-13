@@ -1,0 +1,68 @@
+@model Link.Models.DisplaySitesViewModels.DisplaySitesViewModel
+
+@{
+    ViewData["Title"] = "Parimad lehed";
+    ViewData["ActivePage"] = "DisplaySites";
+}
+
+<div class="container">
+    <span class="text-success">@ViewData["successMessage"]</span>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Koht</th>
+                    <th>Url</th>
+                    <th>Punktid kokku</th>
+                    <th>Pealkirjad</th>
+                    <th>Kirjeldused</th>
+                    <th>Omanikud</th>
+                    <th>Kategooriad</th>
+                </tr>
+                @for (int i = 0; i < Model.SiteInfosCombined.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @(i+1)
+                        </td>
+                        <td>
+                            <a href="@Html.DisplayFor(site => site.SiteInfosCombined[i].Url)">@Html.DisplayFor(site => site.SiteInfosCombined[i].Url)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(site => site.SiteInfosCombined[i].TotalPoints)
+                        </td>
+                        <td>
+                            @foreach (var title in Model.SiteInfosCombined[i].Titles)
+                            {
+                                @title
+                                <br>
+                            }
+                        </td>
+
+                        <td>
+                            @foreach (var description in Model.SiteInfosCombined[i].Descriptions)
+                            {
+                                @description
+                                <br>
+                            }
+                        </td>
+                        <td>
+                            @foreach (var owner in Model.SiteInfosCombined[i].Owners)
+                            {
+                                @owner
+                                <br>
+                            }
+                        </td>
+                        <td>
+                            @foreach (var category in Model.SiteInfosCombined[i].Categories)
+                            {
+                                @category
+                                <br>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
