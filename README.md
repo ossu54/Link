@@ -14,6 +14,9 @@ App should request the service for top 10 websites and display the aggregated re
 Unfortunately my azure trial has ran out so the links return a 403.
 
 http://link111.azurewebsites.net/
+
 http://zelda111.azurewebsites.net/
+
 http://zelda111.azurewebsites.net/sites?nrResults=10&sortBy=points&reverse=true
+
 http://zelda111.azurewebsites.net/sites?nrResults=4&sortBy=points&reverse=false
